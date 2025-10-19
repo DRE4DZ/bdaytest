@@ -1,0 +1,138 @@
+/* ballon */
+.balloon {
+    position: fixed;
+    bottom: -100px;
+    left: 50%;
+    font-size: 60px;
+    transform: translateX(-50%);
+    animation: floatUp 6s ease-in-out forwards;
+    pointer-events: none;
+    z-index: 999;
+}
+@keyframes floatUp {
+    0% {
+        transform: translateX(-50%) translateY(0) rotate(-5deg);
+    }
+    50% {
+        transform: translateX(-55%) translateY(-120vh) rotate(5deg);
+    }
+    100% {
+        transform: translateX(-45%) translateY(-140vh) rotate(-2deg) scale(0.3);
+        opacity: 0;
+    }
+}
+
+/* Sidebar */
+.sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 250px;
+    background: #1c7ed6;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    transition: width 0.3s ease;
+    z-index: 900;
+}
+
+.sidebar.collapsed {
+    width: 80px;
+}
+
+#toggleBtn {
+    background: linear-gradient(
+        135deg,
+        rgba(77, 171, 247, 0.9),
+        rgba(165, 216, 255, 0.9)
+    );
+    box-shadow: 0 8px 32px rgba(77, 171, 247, 0.3);
+    color: #fff;
+    border: none;
+    padding: 15px;
+    font-size: 24px;
+    cursor: pointer;
+    width: 100%;
+    text-align: center;
+    transition: 0.3s;
+}
+
+#toggleBtn:hover {
+    background: #5f95c5;
+}
+
+/* Menu Items */
+.menu-items {
+    padding: 20px;
+}
+
+.menu-item {
+    padding: 15px;
+    cursor: pointer;
+    border-radius: 12px;
+    margin-bottom: 10px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    color: #fff;
+    font-weight: 500;
+    position: relative;
+    overflow: hidden;
+}
+
+.menu-item:hover {
+    background: rgba(116, 192, 252, 0.3);
+    transform: translateX(5px);
+}
+
+.menu-item.active {
+    background: rgba(116, 192, 252, 0.5);
+    font-weight: bold;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.menu-item.active::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 4px;
+    background: #fff;
+}
+
+/* Content */
+#content {
+    margin-left: 250px;
+    padding: 40px 30px;
+    transition: margin-left 0.3s ease;
+}
+
+.sidebar.collapsed ~ #content {
+    margin-left: 80px;
+}
+
+/* Hide sidebar when in preview mode */
+#content.preview-mode ~ .sidebar {
+    display: none;
+}
+
+.content-section {
+    display: none;
+}
+.content-section h2 {
+    color: #f1f1f1;
+}
+
+.content-section.active {
+    display: block;
+}
+
+/* Menu Text */
+.menu-text {
+    transition: opacity 0.3s ease;
+}
+
+.sidebar.collapsed .menu-text {
+    display: none;
+}
